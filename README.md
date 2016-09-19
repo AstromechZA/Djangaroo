@@ -25,6 +25,14 @@ only use:
 - `Django==1.10.1`
 - `PyYaml` (no really necessary, but makes fixtures nicer)
 
+# How to use this example/template:
+
+- clone or fork it
+- remove the request routing to the `example_app` and remove it from
+the `INSTALLED_APPS` list. 
+- rename the various folders to match your naming scheme, I suggest
+using PyCharm or the like so that it renamed all references for you
+
 ## TODO
 
 - demonstrate unit and functional tests
