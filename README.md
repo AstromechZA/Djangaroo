@@ -27,6 +27,9 @@ only use:
 
 # How to use this example/template:
 
+This repo is mostly for my own use when setting up simple projects, but 
+if you want to use it:
+
 - clone or fork it
 - remove the request routing to the `example_app` and remove it from
 the `INSTALLED_APPS` list. 
@@ -38,3 +41,9 @@ using PyCharm or the like so that it renamed all references for you
 - demonstrate unit and functional tests
 - improve error messages for forms
 - add flash messages to top of pages
+- add json api example (another app?)
+- DEBUG = false production settings
+- Production deployment with nginx and docker
+- Make scripts for setting up the prod install
+    - allow mount settings file 
+    - allow mount db directory
