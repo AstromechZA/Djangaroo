@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% load fontawesome_tags %}
+{% block content %}
+
+<div class="row-fluid">
+    <div class="col-lg-12">
+        <div class="centering text-center">
+            <h1>{% fa_icon 'warning' %} 404</h1>
+            <h2>Page not found</h2>
+            <span>You tried to access <code>{{ request_path }}</code> but we could not route your request.</span>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}

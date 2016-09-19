@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load fontawesome_tags %}
+{% block content %}
+
+<div class="row-fluid">
+    <div class="col-lg-12">
+        <div class="centering text-center">
+            <h1>{% fa_icon 'question-circle' %} Bad Request</h1>
+            <span>The server did not understand your request.</span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,3 +1,7 @@
+html, body {
+    height: 100%;
+}
+
 .page-header > h1 {
     display: inline;
 }
@@ -46,4 +50,25 @@ form.form-inline {
     color: #262626;
     text-decoration: none;
     background-color: #f5f5f5;
+}
+
+.above-footer {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin: 0 auto -40px;
+}
+
+.footer, .footer-push {
+    height: 40px;
+}
+
+.footer {
+    padding: 10px;
+    font-size: 12px;
+    color: #bbb;
+}
+
+.footer > span {
+    vertical-align: bottom;
 }

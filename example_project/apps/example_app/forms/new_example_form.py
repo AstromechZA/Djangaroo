@@ -1,7 +1,7 @@
 from django import forms
-from django.core import validators
 
 from example_project.apps.example_app.models import Example
+
 
 class NewExampleForm(forms.ModelForm):
 

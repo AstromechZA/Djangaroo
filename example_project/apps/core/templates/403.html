@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% load fontawesome_tags %}
+{% block content %}
+
+<div class="row-fluid">
+    <div class="col-lg-12">
+        <div class="centering text-center">
+            <h1>{% fa_icon 'minus-circle' %} Forbidden</h1>
+            <span>{{ exception }}</span>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

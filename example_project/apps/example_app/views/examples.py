@@ -5,7 +5,7 @@ from example_project.apps.example_app.forms.new_example_form import NewExampleFo
 from example_project.apps.example_app.models import Example
 
 
-class ExamplesView(View):
+class ListExamples(View):
 
     def get(self, request):
         return render(request, 'examples/list_examples.html', {
@@ -13,7 +13,7 @@ class ExamplesView(View):
         })
 
 
-class NewExampleView(View):
+class NewExample(View):
 
     def get(self, request):
         form = NewExampleForm()
@@ -27,14 +27,14 @@ class NewExampleView(View):
         return render(request, 'examples/new_example.html', {'egform': form}, status=400)
 
 
-class DeleteExampleView(View):
+class DeleteExample(View):
 
     def post(self, request, example_id):
         get_object_or_404(Example, pk=example_id).delete()
         return redirect('examples:list_examples')
 
 
-class EditExampleView(View):
+class EditExample(View):
 
     def get(self, request, example_id):
         eg = get_object_or_404(Example, pk=example_id)
@@ -49,7 +49,8 @@ class EditExampleView(View):
 
         return render(request, 'examples/edit_example.html', {'eg': eg, 'egform': form}, status=400)
 
-class ExamplesInstanceView(View):
+
+class ViewExample(View):
 
     def get(self, request, example_id):
         eg = get_object_or_404(Example, pk=example_id)
