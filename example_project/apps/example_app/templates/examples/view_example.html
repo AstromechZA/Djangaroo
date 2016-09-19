@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load fontawesome_tags %}
+{% block content %}
+
+<div class="page-header">
+    <h1>Example '{{ example.name }}'</h1>
+    <div class="dropdown">
+        <button id="dLabel" type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {% fa_icon 'chevron-down' %} Actions
+        </button>
+
+        <ul class="dropdown-menu nowidth" aria-labelledby="dLabel">
+            <li><a href="{% url 'examples:edit_example' example.id %}">{% fa_icon 'pencil' %} Edit</a></li>
+            <li><form class="form-inline" method="post" id="delete" name="delete" action="{% url 'examples:delete_example' example.id %}">
+              {% csrf_token %}
+              <button class="btn btn-link" onclick="return confirm('Are you sure?')" type="submit">{% fa_icon 'trash' %} Delete</button>
+            </form></li>
+        </ul>
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load fontawesome_tags %}
+{% block content %}
+
+<div class="page-header">
+    <h1>Examples <small>Index</small></h1>
+    <a href="{% url 'examples:new_example' %}" class="btn btn-default">{% fa_icon 'plus' %} Add</a>
+</div>
+
+<table class="table table-bordered table-striped">
+    <thead>
+        <tr>
+            <th class="norightborder">Name</th>
+            <th class="nowidth noleftborder"></th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for eg in examples %}
+            <tr>
+                <td><a href="{% url 'examples:view_example' eg.id %}">{{ eg.name }}</a></td>
+                <td class="nowidth">
+                    <a href="{% url 'examples:edit_example' eg.id %}" class="btn btn-sm btn-info">{% fa_icon 'pencil' %}</a>
+                    <form class="form-inline" method="post" id="delete" name="delete" action="{% url 'examples:delete_example' eg.id %}">
+                      {% csrf_token %}
+                      <button class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')" type="submit">{% fa_icon 'trash' %}</button>
+                    </form>
+                </td>
+            </tr>
+        {% empty %}
+            <tr><td colspan="2">No Examples Found</td></tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

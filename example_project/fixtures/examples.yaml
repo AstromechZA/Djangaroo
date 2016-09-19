@@ -1,0 +1,9 @@
+- model: example_app.Example
+  pk: 1
+  fields:
+      name: Example 1
+
+- model: example_app.Example
+  pk: 2
+  fields:
+      name: Example 2
