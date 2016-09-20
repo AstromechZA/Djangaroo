@@ -19,6 +19,7 @@ use:
 - custom error templates/views
 - fixtures
 - unit test samples for models and views
+- flash messages
 
 One of the goals was to use as few 3rd party modules as possible so we 
 only use:
@@ -42,11 +43,12 @@ using PyCharm or the like so that it renamed all references for you
 
 - **Remember to look at https://github.com/rosarior/awesome-django**
 - https://djangopackages.org/
-
+- if you want tags use this: https://github.com/alex/django-taggit/ 
+    don't reinvent them
+- if you need auto complete use this: https://github.com/yourlabs/django-autocomplete-light/
+    
 ## TODO
 
-- improve error messages for forms
-- add flash messages to top of pages
 - add json api example (another app?)
 - DEBUG = false production settings
 - Production deployment with nginx and docker

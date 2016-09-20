@@ -11,28 +11,9 @@
     </head>
     <body>
         <div class="above-footer">
-            <nav class="navbar navbar-default">
-                <div class="container-fluid">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#mainNavBarCollapse" aria-expanded="false">
-                            <span class="sr-only">Toggle Navigation</span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>
-                        <a class="navbar-brand" href="#">Example App</a>
-                    </div>
-
-                    <div class="collapse navbar-collapse" id="mainNavBarCollapse">
-                        <ul class="nav navbar-nav">
-                            <li>
-                                <a href="{% url 'examples:list_examples' %}">Examples</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </nav>
+            {% include "navbar-default.html" %}
             <div class="container" >
+                {% include "messages.html" %}
                 {% block content %}{% endblock %}
             </div>
             <div class="footer-push"></div>

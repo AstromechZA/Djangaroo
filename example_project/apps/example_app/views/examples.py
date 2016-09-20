@@ -1,3 +1,4 @@
+from django.contrib import messages
 from django.shortcuts import render, get_object_or_404, redirect
 from django.views.generic.base import View
 
@@ -22,15 +23,20 @@ class NewExample(View):
     def post(self, request):
         form = NewExampleForm(request.POST)
         if form.is_valid():
-            return redirect(form.save())
+            e = form.save()
+            messages.success(request, "Created new Example %s" % e.name)
+            return redirect(e)
 
+        messages.error(request, "Form Validation issue")
         return render(request, 'examples/new_example.html', {'egform': form}, status=400)
 
 
 class DeleteExample(View):
 
     def post(self, request, example_id):
-        get_object_or_404(Example, pk=example_id).delete()
+        e = get_object_or_404(Example, pk=example_id)
+        e.delete()
+        messages.success(request, "Deleted Example %s" % e.name)
         return redirect('examples:list_examples')
 
 
@@ -45,8 +51,11 @@ class EditExample(View):
         eg = get_object_or_404(Example, pk=example_id)
         form = NewExampleForm(request.POST)
         if form.is_valid():
-            return redirect(form.save())
+            e = form.save()
+            messages.success(request, "Modify Example %s" % e.name)
+            return redirect(e)
 
+        messages.error(request, "Form Validation issue")
         return render(request, 'examples/edit_example.html', {'eg': eg, 'egform': form}, status=400)
 
 
