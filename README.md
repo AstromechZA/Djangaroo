@@ -18,6 +18,7 @@ use:
 - static files
 - custom error templates/views
 - fixtures
+- unit test samples for models and views
 
 One of the goals was to use as few 3rd party modules as possible so we 
 only use:
@@ -38,7 +39,6 @@ using PyCharm or the like so that it renamed all references for you
 
 ## TODO
 
-- demonstrate unit and functional tests
 - improve error messages for forms
 - add flash messages to top of pages
 - add json api example (another app?)
