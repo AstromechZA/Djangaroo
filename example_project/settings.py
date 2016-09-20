@@ -15,22 +15,48 @@ import os
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 from django.contrib import messages
 
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# =================================================================================
+# DIRECTORY DEFINITIONS
+# =================================================================================
 
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/1.10/howto/deployment/checklist/
+_THIS_DIR = os.path.dirname(__file__)
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!q73o$w9v)qbv72xq5!ra7yz-dn%hg5o5946mc+13qjue$@uff'
+# home dir is the root web_src directory
+HOME_DIR = os.path.abspath(os.path.dirname(_THIS_DIR))
+PROJECT_DIR = os.path.join(HOME_DIR, 'example_project')
+
+# live dir is the directory that will host uploaded files and generated css/javascript when running in prod
+LIVE_DIR = os.environ.get('DJANGO_APP_LIVE', os.path.join(PROJECT_DIR, 'live'))
+
+# static dir is the source of static files
+STATIC_DIR = os.path.join(PROJECT_DIR, 'static')
+STATICFILES_DIRS = [STATIC_DIR]
+# static root is the directory to which generated content will be put
+STATIC_ROOT = os.path.join(LIVE_DIR, 'static')
+
+# =================================================================================
+# GENERAL SETTINGS
+# =================================================================================
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# SECURITY WARNING: keep the secret key used in production secret!
+SECRET_KEY = '!q73o$w9v)qbv72xq5!ra7yz-dn%hg5o5946mc+13qjue$@uff'
 
+SITE_DOMAIN = os.environ.get('DJANGO_APP_SITE_DOMAIN')
+ALLOWED_HOSTS = ['localhost', SITE_DOMAIN]
 
+MESSAGE_TAGS = {messages.ERROR: 'danger'}
+
+FIXTURE_DIRS = [
+    os.path.join(HOME_DIR, 'example_project', 'fixtures')
+]
+
+# =================================================================================
 # Application definition
+# =================================================================================
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -76,27 +102,35 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'example_project.wsgi.application'
 
-FIXTURE_DIRS = [
-    os.path.join(BASE_DIR, 'example_project', 'fixtures')
-]
+# =================================================================================
+# Static files (CSS, JavaScript, Images)
+# https://docs.djangoproject.com/en/1.9/howto/static-files/
+# =================================================================================
 
-MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
-}
+STATIC_URL = '/static/'
+STATICFILES_FINDERS = (
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+    'compressor.finders.CompressorFinder',
+)
 
+# =================================================================================
 # Database
-# https://docs.djangoproject.com/en/1.10/ref/settings/#databases
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+# =================================================================================
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'NAME': os.path.join(LIVE_DIR, 'db.sqlite3'),
     }
 }
 
 
+# =================================================================================
 # Password validation
-# https://docs.djangoproject.com/en/1.10/ref/settings/#auth-password-validators
+# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
+# =================================================================================
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -113,24 +147,44 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
+# =================================================================================
 # Internationalization
-# https://docs.djangoproject.com/en/1.10/topics/i18n/
+# https://docs.djangoproject.com/en/1.9/topics/i18n/
+# =================================================================================
 
 LANGUAGE_CODE = 'en-us'
-
 TIME_ZONE = 'UTC'
-
 USE_I18N = True
-
 USE_L10N = True
-
 USE_TZ = True
 
+# =================================================================================
+# Logging
+# https://docs.djangoproject.com/en/1.9/topics/logging/#configuring-logging
+# =================================================================================
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/1.10/howto/static-files/
-
-STATIC_DIR = os.path.join(BASE_DIR, 'example_project', 'static')
-STATICFILES_DIRS = [STATIC_DIR]
-STATIC_URL = '/static/'
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': True,
+    'formatters': {
+        'verbose': {
+            'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s'
+        }
+    },
+    'handlers': {
+        'djangoerrors': {
+            'level': 'ERROR',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(LIVE_DIR, 'logs', 'djangoerrors.log'),
+            'maxBytes': 1024 * 1024 * 100,  # 100 mb
+        }
+    },
+    'loggers': {
+        'django.request': {
+            'level': 'ERROR',
+            'handlers': ['djangoerrors'],
+            'propagate': True,
+        },
+    }
+}
