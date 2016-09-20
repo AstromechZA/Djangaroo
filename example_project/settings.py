@@ -165,7 +165,7 @@ USE_TZ = True
 
 LOGGING = {
     'version': 1,
-    'disable_existing_loggers': True,
+    'disable_existing_loggers': False,
     'formatters': {
         'verbose': {
             'format': '[%(asctime)s.%(msecs)03d] %(levelname)s [%(name)s:%(lineno)s] [%(module)s] [PID: %(process)d] %(message)s',
@@ -173,12 +173,19 @@ LOGGING = {
         }
     },
     'handlers': {
-        'djangoerrors': {
-            'level': 'ERROR',
+        'requestsall': {
+            'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'verbose',
-            'filename': os.path.join(LIVE_DIR, 'logs', 'djangoerrors.log'),
-            'maxBytes': 1024 * 1024 * 100,  # 100 mb
+            'filename': os.path.join(LIVE_DIR, 'logs', 'requests-all.log'),
+            'maxBytes': 1024 * 1024 * 100,
+        },
+        'badlogs': {
+            'level': 'WARNING',
+            'class': 'logging.handlers.RotatingFileHandler',
+            'formatter': 'verbose',
+            'filename': os.path.join(LIVE_DIR, 'logs', 'django-warn-errs.log'),
+            'maxBytes': 1024 * 1024 * 100,
         },
         'consolelog': {
             'level': 'DEBUG',
@@ -187,10 +194,14 @@ LOGGING = {
         }
     },
     'loggers': {
-        'django.request': {
+        'django.server': {
             'level': 'DEBUG',
-            'handlers': ['djangoerrors', 'consolelog'],
+            'handlers': ['requestsall'],
             'propagate': True,
+        },
+        '': {
+            'level': 'DEBUG',
+            'handlers': ['consolelog', 'badlogs']
         }
     }
 }
