@@ -26,10 +26,10 @@ STATIC_ROOT = os.path.join(LIVE_DIR, 'static')
 # =================================================================================
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_APP_DEBUG', True)
+DEBUG = os.environ.get('DJANGO_APP_DEBUG', False)
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '!q73o$w9v)qbv72xq5!ra7yz-dn%hg5o5946mc+13qjue$@uff'
+SECRET_KEY = os.environ.get('DJANGO_APP_SECRET_KEY', '!q73o$w9v)qbv72xq5!ra7yz-dn%hg5o5946mc+13qjue$@uff')
 
 SITE_DOMAIN = os.environ.get('DJANGO_APP_SITE_DOMAIN')
 ALLOWED_HOSTS = ['localhost', SITE_DOMAIN]
@@ -98,7 +98,6 @@ STATIC_URL = '/static/'
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-    'compressor.finders.CompressorFinder',
 )
 
 # =================================================================================
