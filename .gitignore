@@ -2,5 +2,5 @@ venv*/
 db.sqlite3
 *.pyc
 .idea/
-example_project/live/logs/*
-example_project/live/static/*
+web_src/example_project/live/logs/*
+web_src/example_project/live/static/*
