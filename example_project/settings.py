@@ -108,8 +108,13 @@ STATICFILES_FINDERS = (
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(LIVE_DIR, 'db.sqlite3'),
+        # Add 'postgresql_psycopg2', 'mysql', 'sqlite3' or 'oracle'.
+        'ENGINE': os.environ.get('DB_CONN_ENGINE', 'django.db.backends.sqlite3'),
+        'NAME': os.environ.get('DB_CONN_NAME', os.path.join(LIVE_DIR, 'db.sqlite3')),
+        'USER': os.environ.get('DB_CONN_USER', ''),
+        'PASSWORD': os.environ.get('DB_CONN_PASSWORD', ''),
+        'HOST': os.environ.get('DB_CONN_HOST', ''),
+        'PORT': os.environ.get('DB_CONN_PORT', ''),
     }
 }
 
