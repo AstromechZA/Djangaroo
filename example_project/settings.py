@@ -38,6 +38,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django_fullclean',
+
     'example_project.apps.core',
     'example_project.apps.example_app',
 ]
