@@ -168,7 +168,8 @@ LOGGING = {
     'disable_existing_loggers': True,
     'formatters': {
         'verbose': {
-            'format': '%(asctime)s %(levelname)s [%(name)s:%(lineno)s] %(module)s %(process)d %(thread)d %(message)s'
+            'format': '[%(asctime)s.%(msecs)03d] %(levelname)s [%(name)s:%(lineno)s] [%(module)s] [PID: %(process)d] %(message)s',
+            'datefmt': '%Y-%m-%dT%H:%M:%S'
         }
     },
     'handlers': {
@@ -178,13 +179,18 @@ LOGGING = {
             'formatter': 'verbose',
             'filename': os.path.join(LIVE_DIR, 'logs', 'djangoerrors.log'),
             'maxBytes': 1024 * 1024 * 100,  # 100 mb
+        },
+        'consolelog': {
+            'level': 'DEBUG',
+            'class': 'logging.StreamHandler',
+            'formatter': 'verbose',
         }
     },
     'loggers': {
         'django.request': {
-            'level': 'ERROR',
-            'handlers': ['djangoerrors'],
+            'level': 'DEBUG',
+            'handlers': ['djangoerrors', 'consolelog'],
             'propagate': True,
-        },
+        }
     }
 }
