@@ -20,6 +20,7 @@ use:
 - fixtures
 - unit test samples for models and views
 - flash messages
+- basic json api
 
 One of the goals was to use as few 3rd party modules as possible so we 
 only use:
@@ -46,10 +47,10 @@ using PyCharm or the like so that it renamed all references for you
 - if you want tags use this: https://github.com/alex/django-taggit/ 
     don't reinvent them
 - if you need auto complete use this: https://github.com/yourlabs/django-autocomplete-light/
+- if you need more complex API stuff look at the REST framework
     
 ## TODO
 
-- add json api example (another app?)
 - DEBUG = false production settings
 - Production deployment with nginx and docker
 - Make scripts for setting up the prod install
