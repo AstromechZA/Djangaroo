@@ -25,6 +25,7 @@ only use:
 
 - `Django==1.10.1`
 - `PyYaml` (no really necessary, but makes fixtures nicer)
+- `django-fullclean`
 
 # How to use this example/template:
 
@@ -36,6 +37,11 @@ if you want to use it:
 the `INSTALLED_APPS` list. 
 - rename the various folders to match your naming scheme, I suggest
 using PyCharm or the like so that it renamed all references for you
+
+# More resources:
+
+- **Remember to look at https://github.com/rosarior/awesome-django**
+- https://djangopackages.org/
 
 ## TODO
 
