@@ -6,6 +6,8 @@ A template for a basic Django 1.10 site including the things I usually use:
 - jQuery
 - Font Awesome
 
+![Screen Shot 1](screenshots/Screen Shot 1.png)
+
 ## The example app demonstrates a variety of things:
 
 These can be copied and adapted as you see fit:
@@ -74,3 +76,9 @@ file.
 - if you want tags use this: https://github.com/alex/django-taggit/ don't reinvent them
 - if you need auto complete use this: https://github.com/yourlabs/django-autocomplete-light/
 - if you need more complex API stuff look at the REST framework
+
+# More Screenshots
+
+![Screen Shot 2](screenshots/Screen Shot 2.png)
+![Screen Shot 3](screenshots/Screen Shot 3.png)
+![Screen Shot 4](screenshots/Screen Shot 4.png)

@@ -1,9 +1,50 @@
+# use "python manage.py loaddata examples" to load these.
+
 - model: example_app.Example
   pk: 1
   fields:
-      name: Example 1
-
+      name: Comprehensive Sea Conductron Widget
 - model: example_app.Example
   pk: 2
   fields:
-      name: Example 2
+      name: Encrypted Flood Alterator Thingymajig
+- model: example_app.Example
+  pk: 3
+  fields:
+      name: Synthesized Road Rejuvenator Network
+- model: example_app.Example
+  pk: 4
+  fields:
+      name: Enhanced Farm Obscurator
+- model: example_app.Example
+  pk: 5
+  fields:
+      name: Altered Mine Morphomatic MachineKit
+- model: example_app.Example
+  pk: 6
+  fields:
+      name: Barrier Transporter Device
+- model: example_app.Example
+  pk: 7
+  fields:
+      name: A.I. Intensitron Interface
+- model: example_app.Example
+  pk: 8
+  fields:
+      name: Heavy-Duty Science Conveyor Matrix
+- model: example_app.Example
+  pk: 9
+  fields:
+      name: Flame Assembler Interface
+- model: example_app.Example
+  pk: 10
+  fields:
+      name: Portable Radiation Monitron Interface
+- model: example_app.Example
+  pk: 11
+  fields:
+      name: Mobile Care Relocator Mechanism
+- model: example_app.Example
+  pk: 12
+  fields:
+      name: Sound Conveyor Gizmo
