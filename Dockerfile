@@ -25,7 +25,7 @@ RUN     mkdir -p /var/log/supervisor
 
 # === COPY IN DJANGO APP ================================================================================================
 COPY    /web_src/ /django_app/
-RUN     rm -rfv /django_app/live && mkdir -p /django_app/live/static /django_app/live/logs
+RUN     mkdir -p /django_app/live/static /django_app/live/logs
 
 # === SETUP WWW USER ===================================================================================================
 RUN     useradd -M -d /sbin www
