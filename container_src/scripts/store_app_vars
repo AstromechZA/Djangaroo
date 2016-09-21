@@ -1,0 +1,28 @@
+#!/usr/bin/env python
+
+import os
+
+VARS_TO_COPY = [
+    'DB_CONN_ENGINE',
+    'DB_CONN_HOST',
+    'DB_CONN_PORT',
+    'DB_CONN_NAME',
+    'DB_CONN_USER',
+    'DB_CONN_PASSWORD',
+
+    'DJANGO_APP_LIVE',
+    'DJANGO_APP_LOGDIR',
+    'DJANGO_APP_DEBUG',
+    'DJANGO_APP_SECRET_KEY',
+    'DJANGO_APP_SITE_DOMAIN',
+]
+
+content = ""
+for v in VARS_TO_COPY:
+    if v in os.environ:
+        print "Append var export for %s" % v
+        content += "\nexport %s=\"%s\"" % (v, os.environ[v])
+
+print "Writing new overrides.env"
+with open('/django_app/overrides.env', 'w') as f:
+    f.write(content)

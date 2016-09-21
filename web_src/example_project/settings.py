@@ -2,6 +2,11 @@ import os
 
 from django.contrib import messages
 
+# =================================================================================
+# DOCKER DETECTION FOR PROD
+# =================================================================================
+
+IS_DOCKER = os.path.isfile('.dockerenv')
 
 # =================================================================================
 # DIRECTORY DEFINITIONS
@@ -14,7 +19,10 @@ HOME_DIR = os.path.abspath(os.path.dirname(_THIS_DIR))
 PROJECT_DIR = os.path.join(HOME_DIR, 'example_project')
 
 # live dir is the directory that will host uploaded files and generated css/javascript when running in prod
-LIVE_DIR = os.environ.get('DJANGO_APP_LIVE', os.path.join(PROJECT_DIR, 'live'))
+LIVE_DIR = os.environ.get('DJANGO_APP_LIVE', os.path.join(PROJECT_DIR, '..', 'live'))
+
+# log directory so that it can be overridden
+LOG_DIR = os.environ.get('DJANGO_APP_LOGDIR', os.path.join(LIVE_DIR, 'logs'))
 
 # static dir is the source of static files
 STATIC_DIR = os.path.join(PROJECT_DIR, 'static')
@@ -26,7 +34,7 @@ STATIC_ROOT = os.path.join(LIVE_DIR, 'static')
 # =================================================================================
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = os.environ.get('DJANGO_APP_DEBUG', False)
+DEBUG = bool(os.environ.get('DJANGO_APP_DEBUG', not IS_DOCKER))
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('DJANGO_APP_SECRET_KEY', '!q73o$w9v)qbv72xq5!ra7yz-dn%hg5o5946mc+13qjue$@uff')
@@ -167,14 +175,14 @@ LOGGING = {
             'level': 'DEBUG',
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'verbose',
-            'filename': os.path.join(LIVE_DIR, 'logs', 'requests-all.log'),
+            'filename': os.path.join(LOG_DIR, 'django-requests.log'),
             'maxBytes': 1024 * 1024 * 100,
         },
         'badlogs': {
             'level': 'WARNING',
             'class': 'logging.handlers.RotatingFileHandler',
             'formatter': 'verbose',
-            'filename': os.path.join(LIVE_DIR, 'logs', 'django-warn-errs.log'),
+            'filename': os.path.join(LOG_DIR, 'django-warn-errs.log'),
             'maxBytes': 1024 * 1024 * 100,
         },
         'consolelog': {

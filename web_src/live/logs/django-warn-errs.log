@@ -1,0 +1,6 @@
+[2016-09-21T18:36:52.111] WARNING [django.request:152] [base] [PID: 79907] Not Found: /favicon.ico
+[2016-09-21T18:36:52.113] WARNING [django.server:131] [basehttp] [PID: 79907] "GET /favicon.ico HTTP/1.1" 404 2949
+[2016-09-21T18:36:52.159] WARNING [django.request:152] [base] [PID: 79907] Not Found: /favicon.ico
+[2016-09-21T18:36:52.160] WARNING [django.server:131] [basehttp] [PID: 79907] "GET /favicon.ico HTTP/1.1" 404 2949
+[2016-09-21T18:36:55.360] WARNING [django.request:152] [base] [PID: 79907] Not Found: /examples/awdawd
+[2016-09-21T18:36:55.361] WARNING [django.server:131] [basehttp] [PID: 79907] "GET /examples/awdawd HTTP/1.1" 404 3851
