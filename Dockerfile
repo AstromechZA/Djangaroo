@@ -23,7 +23,7 @@ COPY    /container_src/config/nginx.conf /etc/nginx/sites-enabled/django-app.con
 COPY    /container_src/config/supervisord.conf /etc/supervisord.conf
 RUN     mkdir -p /var/log/supervisor
 
-# === COPY IN DJANGO APP ================================================================================================
+# === COPY IN DJANGO APP ===============================================================================================
 COPY    /web_src/ /django_app/
 RUN     mkdir -p /django_app/live/static /django_app/live/logs
 

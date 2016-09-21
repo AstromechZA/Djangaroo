@@ -21,6 +21,7 @@ use:
 - unit test samples for models and views
 - flash messages
 - basic json api
+- docker build and prod deployment
 
 One of the goals was to use as few 3rd party modules as possible so we 
 only use:
@@ -51,8 +52,6 @@ using PyCharm or the like so that it renamed all references for you
     
 ## TODO
 
-- DEBUG = false production settings
-- Production deployment with nginx and docker
 - Make scripts for setting up the prod install
     - allow mount settings file 
     - allow mount db directory
